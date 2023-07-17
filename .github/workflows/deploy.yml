@@ -23,6 +23,8 @@ jobs:
 
       - name: Upload Pages
         uses: actions/upload-pages-artifact@v2
+        with:
+          path: generated
 
   deploy:
     name: Deploy Notes
