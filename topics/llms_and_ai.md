@@ -52,6 +52,7 @@ Most of the following is links to reading and resources that could be helpful wh
     - A Github repo of useful links and resources.
 - [OpenAI Models](https://platform.openai.com/docs/models) 
     - A list of all the models OpenAI currently has for use.
+    - *Check out [this](https://platform.openai.com/docs/models/gpt-3-5) model (gpt-3.5-turbo-0613) a model that is specifically trained for function calls.*
 - [Best Practices for GPT](https://platform.openai.com/docs/guides/gpt-best-practices)
     - Guidelines from OpenAI on how to instruct models.
 - [Best Practices for Safety](https://platform.openai.com/docs/guides/safety-best-practices)
@@ -74,6 +75,10 @@ The following are some of the python docs LangChain has on useful topics to get 
 - [Prompts](https://python.langchain.com/docs/modules/model_io/prompts/)
   - Good to understand how this works first.
 - [LLM v.s. Chat Models](https://python.langchain.com/docs/modules/model_io/models/)
+- [Chat Models](https://python.langchain.com/docs/modules/model_io/models/chat/)
+  - These work slightly differently when compared to regular text based models.
+  - Also look at [caching](https://python.langchain.com/docs/modules/model_io/models/chat/how_to/chat_model_caching) to reduce API calls.
+  - Chat model for [function calling agents](https://python.langchain.com/docs/modules/agents/agent_types/openai_functions_agent) which are tuned for function calls (also refer to [openai](#openai-notes))
 - [Overview of Data Connection](https://python.langchain.com/docs/modules/data_connection/)
   - Connecting SQL databases, processing documents etc.
 - [What are Chains?](https://python.langchain.com/docs/modules/chains/)
@@ -261,57 +266,48 @@ def mainEventLoop(aiObject: AgentExecutor | SQLDatabaseChain):
 - If an API exists and uses the OpenAPI standard, we can create a program to parse and create queries for the API similar to the examples above.
 - Try using Views
   - **Implementation**: Remove any tools to query the schema and tables, just inject into the prompt. Guide through prompting.
-- *Get rid of the ID Columns, we only use those to refrence specific things and it would muddy the prompt fed to the LLM*
+- ~~*Get rid of the ID Columns, we only use those to refrence specific things and it would muddy the prompt fed to the LLM*~~ (**Done**)
 - *Hard Code in a WHERE col = 'val' to prevent peeking into other users data*
 
 ### Problems
-- Too many tokens throws an error
-  - **Idea**: `try except` block. 
-  - **Idea**: Token limits
-- *Missing some input keys: {'input'}*
-  - Not sure how to solve this one tbh 
 - Understanding
-  - ![context](./pictures/understanding.png)
+  - ![context](/pictures/understanding.png)
   - **Idea**: Change the [model](#openai-notes)
   - Not sure how to solve this yet
 - Repetitition
-  - ![context](./pictures/repetition.png)
+  - ![context](/pictures/repetition.png)
+  - **Idea**: Change the [model](#openai-notes)
+- Parses NULL value as valid
   - **Idea**: Change the [model](#openai-notes)
 
 ### Watch
-- Doesn't pick up correct Status:
-  ![context](./pictures/wrongstatus.png)
-  - **Idea**: Create a tool
-    - This is working somewhat, the only problem is that the llm is putting more than one word as an input.
-    - Create a tool to list all the statuses.
-  - *Potential Solution*: Prompting
-    - ![context](./pictures/sdcasestatus.png)
-    - This works for specific things but I would have to add a line for every status which would compound really fast.
-    - Found a better way that just lists all the possible values.
-     > Values in the sdCaseStatusDesc column can only be the following: Approved, Waiting For Triage, Parking Lot, On Hold, In Requirements, In Development Queue, Researching, Being Worked, Waiting for Customer, Pending Additional Information, Ready for QA, In UAT, Waiting to be Released, Resolved, To Be Scheduled, Pending Approval, In QA
-  - *Potential Solution*: Added the following code to list out possible values in columns
-    ```python
-    from typing import List
-    from langchain import SQLDatabase
-
-    class SQLDatabaseExt(SQLDatabase):
-
-    def col_values(self, columns: List[str], table: str):
-        fin_str = ""
-        for col in columns:
-            query = f"SELECT {col} from {table} GROUP BY {col}"
-            fin_str += f"Values in the {col} column can only be one of the following\n{self.run_no_throw(query)}\n\n"
-    ```
+- Uses context from previous conversation history
+  - *Poetntial Solution* Add some prompting
+  > DO NOT use questions or answers from the previous conversation history to create a query UNLESS a question directly mentions a previous one.
 - Not using count where applicable
   - *Potential Solution*: Add the following to the prompt:
     > Use aggregate functions such as COUNT and GROUP BY when asked about quantities.
 - Uses name from context when not applicable
-  ![context](./pictures/context.png)
+  ![context](/pictures/context.png)
   - **Idea**: Prompt this out.
   - *Potential Solution*: Add the following line to the prompt
     > Disregard previous conversation history when not related to the question.
+
+### Solved
+- Too many tokens throws an error
+  - *Solved*: `try except` block. 
+  - **Idea**: Token limits
+- Missing some input keys: {'input'}
+  - Not sure how to solve this one tbh 
+  - *Solved* added a run decorator and manually passed in the agent and input
+    ```python
+    @cl.langchain_run
+    async def run(agent, input_str):
+      res = await cl.make_async(agent)(input_str, callbacks=[cl.LangchainCallbackHandler()])
+      await cl.Message(content=res["output"]).send()
+    ```
 - User Names:
-  - *Potential Solution*: Create a tool to grab user names and ids when question prompts for a user
+  - *Solved*: Create a tool to grab user names and ids when question prompts for a user
     ```python
     class QueryUserNames(BaseTool):
         """Tool for getting the correct user name."""
@@ -340,8 +336,28 @@ def mainEventLoop(aiObject: AgentExecutor | SQLDatabaseChain):
     ```
   - **Idea**: Use First and Last Name columns, prompt to search using both columns
   - **Idea** ***Deprecated***: Indexing User Names and Injecting them into the prompt
+- Doesn't pick up correct Status:
+  ![context](/pictures/wrongstatus.png)
+    - This is working somewhat, the only problem is that the llm is putting more than one word as an input.
+    - Create a tool to list statuses
+  - *Partial Solution*: Prompting
+    - ![context](/pictures/sdcasestatus.png)
+    - This works for specific things but I would have to add a line for every status which would compound really fast.
+    - Found a better way that just lists all the possible values.
+     > Values in the sdCaseStatusDesc column can only be the following: Approved, Waiting For Triage, Parking Lot, On Hold, In Requirements, In Development Queue, Researching, Being Worked, Waiting for Customer, Pending Additional Information, Ready for QA, In UAT, Waiting to be Released, Resolved, To Be Scheduled, Pending Approval, In QA
+  - *Solved*: Added the following code to list out possible values in columns
+    ```python
+    from typing import List
+    from langchain import SQLDatabase
 
-### Solved
+    class SQLDatabaseExt(SQLDatabase):
+
+    def col_values(self, columns: List[str], table: str):
+        fin_str = ""
+        for col in columns:
+            query = f"SELECT {col} from {table} GROUP BY {col}"
+            fin_str += f"Values in the {col} column can only be one of the following\n{self.run_no_throw(query)}\n\n"
+    ```
 - Question Semantics:
   - *Solved*: Should be solved by [Views](#ideas) but bugs may pop up.
 - Understanding Table Joins (Relationships between Tables)

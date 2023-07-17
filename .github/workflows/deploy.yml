@@ -1,0 +1,22 @@
+name: Deploy Docs
+on: push
+
+jobs:
+  deploy-notes:
+    name: Deploy Notes
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      
+      - name: Generate HTML from Markdown
+        uses: ldeluigi/markdown-docs@latest
+        with:
+          src: doc
+          dst: generated
+          title: Markdown Docs
+          language: en
+          icon: library
+          primary-color: indigo
+          secondary-color: indigo
+          hide-repository: false
