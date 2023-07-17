@@ -2,8 +2,8 @@ name: Deploy Docs
 on: push
 
 jobs:
-  deploy-notes:
-    name: Deploy Notes
+  build:
+    name: Build HTML
     runs-on: ubuntu-latest
     steps: 
       - name: Checkout Code
@@ -20,3 +20,20 @@ jobs:
           primary-color: indigo
           secondary-color: indigo
           hide-repository: false
+
+      - name: Upload Pages
+        uses: actions/upload-pages-artifact@v2
+
+  deploy:
+    name: Deploy Notes
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
