@@ -12,7 +12,7 @@ jobs:
       - name: Generate HTML from Markdown
         uses: ldeluigi/markdown-docs@latest
         with:
-          src: doc
+          src: .
           dst: generated
           title: Markdown Docs
           language: en
