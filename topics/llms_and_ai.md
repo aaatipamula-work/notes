@@ -1,6 +1,8 @@
-# Reference
+# LLM's and AI
 
-## *OpenAI Notes*
+## Reference
+
+### *OpenAI Notes*
 
 [General Docs](https://platform.openai.com/docs/introduction)
 
@@ -17,7 +19,7 @@ Most of the following is links to reading and resources that could be helpful wh
 - [Best Practices for Production](https://platform.openai.com/docs/guides/production-best-practices)
 
 
-## *LangChain Notes*
+### *LangChain Notes*
 
 [Python Docs](https://python.langchain.com/docs/get_started)
 
@@ -49,7 +51,7 @@ The following are some of the python docs LangChain has on useful topics to get 
 Most of these are not very long, just conceptual overviews with a few examples written in python. I found them to be a good starting point to understand how something works and then diving deeper from there.
 
 
-## LlamaIndex Notes
+### LlamaIndex Notes
 
 [Python Docs](https://gpt-index.readthedocs.io/en/latest/index.html)
 
@@ -65,22 +67,22 @@ Pros:
 Cons: 
 - Less control over implementation. 
 
-### Query v.s. Chat Engines
+#### Query v.s. Chat Engines
 
 - Query engines are solely focused on answering the question, they do not retain context and are similar in nature to an SQL Chain
 - Chat engines are more conversational, but slightly more prone to injecting irrelevant context into answers.
 
 
-## *Database Connection Strings*
+### *Database Connection Strings*
 
-### Documentation Links
+#### Documentation Links
 
 - [MSSQL Connections](https://docs.sqlalchemy.org/en/20/dialects/mssql.html#module-sqlalchemy.dialects.mssql.pyodbc)
     - Additional Info
 - [Engine Connections](https://docs.sqlalchemy.org/en/20/tutorial/engine.html)
     - Use if using a different connection other than MSSQL
 
-### Examples
+#### Examples
 
 [LangChain](#langchain-notes) uses [SQLAlchemy](https://www.sqlalchemy.org/) (A Python Object Relational Mapping library) for SQL database connection
 
@@ -113,9 +115,9 @@ db = SQLDatabase.from_uri(
 ```
 
 
-## Environment Setup
+### Environment Setup
 
-### Formatting
+#### Formatting
 
 Environment Variables are formatted in all capitalized letters and with underscores such as the following: 
 
@@ -123,7 +125,7 @@ Environment Variables are formatted in all capitalized letters and with undersco
 API_TOKEN_XYZ="key_here"
 ```
 
-### Access
+#### Access
 
 This is relatively simple in Python, refer to the following: 
 
@@ -185,7 +187,7 @@ os.environ["API_TOKEN_XYZ"] = "token_here"
 Refer to [access](#access) on how to grab the values of the env variables.
 
 
-## Code Snippets
+### Code Snippets
 
 This is a useful function to interact with an Agent or Chain in the command line:
 
@@ -212,22 +214,22 @@ def mainEventLoop(aiObject: AgentExecutor | SQLDatabaseChain):
 ```
 
 
-## Questions to Ask
+### Questions to Ask
 
 - How many tickets were created in the month of may?
 - Group those tickets by status.
 
 
-## Thoughts
+### Thoughts
 
-### Ideas 
+#### Ideas 
 - If an API exists and uses the OpenAPI standard, we can create a program to parse and create queries for the API similar to the examples above.
 - Try using Views
   - **Implementation**: Remove any tools to query the schema and tables, just inject into the prompt. Guide through prompting.
 - ~~*Get rid of the ID Columns, we only use those to refrence specific things and it would muddy the prompt fed to the LLM*~~ (**Done**)
 - *Hard Code in a WHERE col = 'val' to prevent peeking into other users data*
 
-### Problems
+#### Problems
 - Understanding
   - ![context](/pictures/understanding.png)
   - **Idea**: Change the [model](#openai-notes)
@@ -238,7 +240,7 @@ def mainEventLoop(aiObject: AgentExecutor | SQLDatabaseChain):
 - Parses NULL value as valid
   - **Idea**: Change the [model](#openai-notes)
 
-### Watch
+#### Watch
 - Uses context from previous conversation history
   - *Poetntial Solution* Add some prompting
   > DO NOT use questions or answers from the previous conversation history to create a query UNLESS a question directly mentions a previous one.
@@ -251,7 +253,7 @@ def mainEventLoop(aiObject: AgentExecutor | SQLDatabaseChain):
   - *Potential Solution*: Add the following line to the prompt
     > Disregard previous conversation history when not related to the question.
 
-### Solved
+#### Solved
 - Too many tokens throws an error
   - *Solved*: `try except` block. 
   - **Idea**: Token limits
@@ -327,15 +329,15 @@ def mainEventLoop(aiObject: AgentExecutor | SQLDatabaseChain):
   - *Solved*: Added `ConversationWindowBufferMemory` to the Agent Executor
 
 
-# Implementations
+## Implementations
 
 Things I've tried to connect an SQL database with AI
 
-## *SQL Chain*
+### *SQL Chain*
 
 [Python Docs](https://python.langchain.com/docs/modules/chains/popular/sqlite)
 
-### Conceptual 
+#### Conceptual 
 
 
 - Similar to how ChatGPT works, you give the LLM a directive and when it gets a question it crafts a query to use, extracts information and answers the question.
@@ -348,7 +350,7 @@ Cons:
 - However sql chains not very effective when crafting complex queries. 
 - Can only really answer simple questions about very simple schemas
 
-### Code Examples
+#### Code Examples
 
 This is an example of a chain that uses a custom prompt:
 
@@ -405,11 +407,11 @@ db_chain.run(input("Question: "))
 Refer to [code snippets](#code-snippets) for a simple command line interface.
 
 
-## *SQL Agent*
+### *SQL Agent*
 
 [Python Docs](https://python.langchain.com/docs/modules/agents/toolkits/sql_database)
 
-### Conceptual
+#### Conceptual
 
 - Based on the sql chain, it uses multiple queries to the API to break the larger question into smaller ones it will answer to produce a final answer.
 
@@ -425,7 +427,7 @@ Cons:
 Other Considerations:
 - Could fine tune prompt and instruction set for the sql agent by making a custom agent.
 
-### Code Examples
+#### Code Examples
 
 This is much simpler as most of the setup is relegated to the langchain framework but it is highly customizable if wanted.
 
@@ -462,13 +464,13 @@ agent_executor.run(input("Question: "))
 Refer to [code snippets](#code-snippets) for a simple command line interface.
 
 
-## LlamaIndex Implementation
+### LlamaIndex Implementation
 
-### Conceptual
+#### Conceptual
 
 - Index the schema of the database and use that to procure the correct tables
 
-### Code Examples
+#### Code Examples
 
 The following is a custom class I made that generates the SQL Database's index and creates a query or chat engine.
 
@@ -550,16 +552,16 @@ class SQLAIEngineGenerator:
 ```
 
 
-## Schema Indexing
+### Schema Indexing
 
 A somewhat of what [LlamaIndex](#llamaindex-implementation) does but with some improvements to flexibility
 
-### Conceptual 
+#### Conceptual 
 
 - Creates an index of the databases schema to use for reference.
 - At query time it identifies the relevant tables and injects it into the prompt
 
-### Process
+#### Process
 
 - Generate an Index of the Database Schema
     - This can be done from a file (and updated if needed)
@@ -571,25 +573,25 @@ A somewhat of what [LlamaIndex](#llamaindex-implementation) does but with some i
 - Feed documents to a vector store database
 - Initiate an agent with a retrieval tool that queries the vector store database for the correct tables
 
-### Changes to the Standard Implementation
+#### Changes to the Standard Implementation
 
 - Uses an index of the Schema *with context* to produce the correct tables.
 - Hard Coded the use of DROP, UPDATE, DELETE, INSERT, LIMIT as unusable.
 - Custom Prompting to encourage correct actions and "thoughts"
 
-### Improvements to be Made
+#### Improvements to be Made
 
 - Use a more robust vector store DB
 - Changes to Prompting
 - Concurrency (asynchronus function calls)
 
-## View Schema Prompt Injection
+### View Schema Prompt Injection
 
-### Conceptual
+#### Conceptual
 
 - Simply create a view with all the applicable data and inject the schema of the view into the prompt
 
-## Prompt Injection
+### Prompt Injection
 
 ***Have not tried this yet***
 

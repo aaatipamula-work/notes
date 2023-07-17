@@ -1,4 +1,6 @@
-# Resources 
+# SQL
+
+## Resources 
 
 I would suggest going through the following lessons to get a decent understanding of SQL and its use:
 
@@ -11,7 +13,15 @@ I would suggest going through the following lessons to get a decent understandin
   - *It is mostly useful when you just want a short document that goes over a feature or topic*.
   - **I would check out the [Views](https://www.w3schools.com/sql/sql_view.asp) page to get familiar with them, we are currently using Views to feed the AI**.
 
-## Database
+## Reference
+
+- [W3 Schools Reference](https://www.w3schools.com/sql/sql_ref_keywords.asp)
+  - Great for checking if you're using something correctly.
+  - Has a pretty extensive list of everything you might ever use in SQL.
+
+## Databases
+
+### MMSQL (Microsoft SQL Server)
 
 We are using [MSSQL](https://en.wikipedia.org/wiki/Microsoft_SQL_Server) or Microsoft SQL Server.
 
@@ -21,9 +31,3 @@ We are using [MSSQL](https://en.wikipedia.org/wiki/Microsoft_SQL_Server) or Micr
 > The only statement I've found that does not work is the `LIKE` statement.
 
 *I suggest downloading [SSMS](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16) or SQL Server Management Studio to interact with our databases*.
-
-# Reference
-
-- [W3 Schools Reference](https://www.w3schools.com/sql/sql_ref_keywords.asp)
-  - Great for checking if you're using something correctly.
-  - Has a pretty extensive list of everything you might ever use in SQL.
