@@ -1,10 +1,3 @@
-<!--title: SQL -->
-# Table of Contents <!-- omit in toc -->
-
-- [Resources](#resources)
-  - [Database](#database)
-- [Reference](#reference)
-
 # Resources 
 
 I would suggest going through the following lessons to get a decent understanding of SQL and its use:

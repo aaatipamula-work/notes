@@ -1,5 +1,9 @@
 name: Deploy Docs
-on: push
+on: 
+  push:
+    branches:
+      - master
+      - main
 
 jobs:
   build:
@@ -14,12 +18,15 @@ jobs:
         with:
           src: .
           dst: generated
-          title: Markdown Docs
+          title: Aniketh's Notes
           language: en
-          icon: library
-          primary-color: indigo
-          secondary-color: indigo
+          icon: note-multiple-outline
+          primary-color: teal
+          secondary-color: teal
           hide-repository: false
+
+      - name: Add Pictures
+        run: cp -r ./pictures ./generated
 
       - name: Upload Pages
         uses: actions/upload-pages-artifact@v2
