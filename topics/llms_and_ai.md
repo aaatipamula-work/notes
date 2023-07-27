@@ -17,6 +17,20 @@ Most of the following is links to reading and resources that could be helpful wh
     - Guidelines from OpenAI on how to instruct models.
 - [Best Practices for Safety](https://platform.openai.com/docs/guides/safety-best-practices)
 - [Best Practices for Production](https://platform.openai.com/docs/guides/production-best-practices)
+- Data and Security
+    - [OpenAI Terms of Use](https://openai.com/policies/terms-of-use)
+    - [OpenAI Usage Policies](https://openai.com/policies/usage-policies)
+    - [API Data Privacy](https://openai.com/api-data-privacy)
+    - [API Data Usage Policies](https://openai.com/policies/api-data-usage-policies)
+    - [Privacy Policy](https://openai.com/policies/privacy-policy)
+    - [Security Portal](https://trust.openai.com/)
+    - [Data Services FAQ](https://help.openai.com/en/articles/7039943-data-usage-for-consumer-services-faq)
+    - [How Language Models are Developed](https://help.openai.com/en/articles/7842364-how-chatgpt-and-our-language-models-are-developed)
+    - [Saftey Page](https://openai.com/safety)
+      - Just info on how they plan to make AI safe.
+    - Forms
+        - [Opt Out of Data Sharing](https://docs.google.com/forms/d/e/1FAIpQLScrnC-_A7JFs4LbIuzevQ_78hVERlNqqCPCt3d8XqnKOfdRdQ/viewform)
+        - [Opt In Data Sharing](https://docs.google.com/forms/d/e/1FAIpQLSevgtKyiSWIOj6CV6XWBHl1daPZSOcIWzcUYUXQ1xttjBgDpA/viewform)
 
 
 ### *LangChain Notes*
