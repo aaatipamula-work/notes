@@ -1,13 +1,22 @@
-# LLM's and AI
+# LLMs and AI
+
+## Overview
+
+The AI that exploded in popularity as of recently (2023) have been of a kind called [LLMs](https://en.wikipedia.org/wiki/Large_language_model) or Large Language Models. As the name suggest they are massive machine learning models that have a huge number of input and evaluation points that also ingest a large amount of data.
+
+The ultimate goal of any LLM is to predict (or generate) what words should follow given set of text (AKA a [prompt](https://github.com/brexhq/prompt-engineering#what-is-a-prompt)). You give an LLM some text and it gives you a likely response. Its a simple concept at its core, but when some of these language models, such as OpenAI's [GPT-3.5](https://platform.openai.com/docs/models/gpt-3-5) are trained with enormous amounts of natural language data with billions of parameters they seem to [acquire many complex abilities](https://www.assemblyai.com/blog/emergent-abilities-of-large-language-models). This ability to utilize those many complex abilities makes general purpose generative AI very useful for many different things.
+
+**This was a quick overview but I highly suggest looking at [Brex's Prompt Engineering Guide](https://github.com/brexhq/prompt-engineering) for a little more insight into the history of modern LLM's and why they've gotten so popular. It's also great as a prompting guide :).**
 
 ## Reference
 
-### *OpenAI Notes*
+### *OpenAI*
 
 [General Docs](https://platform.openai.com/docs/introduction)
 
 Most of the following is links to reading and resources that could be helpful when looking into OpenAI and GPT:
 
+- [Key Concepts](https://platform.openai.com/docs/introduction/key-concepts)
 - [OpenAI Cookbook](https://github.com/openai/openai-cookbook)
     - A Github repo of useful links and resources.
 - [OpenAI Models](https://platform.openai.com/docs/models) 
@@ -26,14 +35,35 @@ Most of the following is links to reading and resources that could be helpful wh
     - [Security Portal](https://trust.openai.com/)
     - [Data Services FAQ](https://help.openai.com/en/articles/7039943-data-usage-for-consumer-services-faq)
     - [How Language Models are Developed](https://help.openai.com/en/articles/7842364-how-chatgpt-and-our-language-models-are-developed)
-    - [Saftey Page](https://openai.com/safety)
-      - Just info on how they plan to make AI safe.
+    - [Safety Page](https://openai.com/safety)
+        - Just info on how they plan to make AI safe.
     - Forms
         - [Opt Out of Data Sharing](https://docs.google.com/forms/d/e/1FAIpQLScrnC-_A7JFs4LbIuzevQ_78hVERlNqqCPCt3d8XqnKOfdRdQ/viewform)
         - [Opt In Data Sharing](https://docs.google.com/forms/d/e/1FAIpQLSevgtKyiSWIOj6CV6XWBHl1daPZSOcIWzcUYUXQ1xttjBgDpA/viewform)
 
+### Overview 
 
-### *LangChain Notes*
+#### Tokens
+
+[Tokens](https://platform.openai.com/docs/introduction/tokens) are essential to how OpenAI's api works. A **Token** is a set of characters that the LLMs uses to help parse and determine output. According to OpenAI they are usually around "4 characters or 0.75 english words". 
+
+*The number of tokens that you send to a model and the number of tokens generated for that response are what determines the cost of an API call. Different models have different token costs and are usually around a fraction of a cent per token*
+
+#### Embeddings
+
+[Embeddings](https://platform.openai.com/docs/introduction/embeddings) are not essential to using the API but are useful to understand how LLMs work. **Embeddings** are a vector encoded representation of text and are mostly used to determine how related texts are. They also have use outside of AI to cluster related texts for use in searches, classification etc.
+
+#### Models
+
+OpenAI Provides a few popular models:
+- [GPT 3.5](https://platform.openai.com/docs/models/gpt-3-5)
+- [GPT 4](https://platform.openai.com/docs/models/gpt-4)
+
+There are a few different variations of these models which usually change one of the following:
+- Context (usually an increase an tokens)
+- Optimization (e.g. optimized to call functions.)
+
+### *LangChain*
 
 [Python Docs](https://python.langchain.com/docs/get_started)
 
@@ -52,7 +82,7 @@ The following are some of the python docs LangChain has on useful topics to get 
 - [Chat Models](https://python.langchain.com/docs/modules/model_io/models/chat/)
   - These work slightly differently when compared to regular text based models.
   - Also look at [caching](https://python.langchain.com/docs/modules/model_io/models/chat/how_to/chat_model_caching) to reduce API calls.
-  - Chat model for [function calling agents](https://python.langchain.com/docs/modules/agents/agent_types/openai_functions_agent) which are tuned for function calls (also refer to [openai](#openai-notes))
+  - Chat model for [function calling agents](https://python.langchain.com/docs/modules/agents/agent_types/openai_functions_agent) which are tuned for function calls (also refer to [OpenAI](#openai-notes))
 - [Overview of Data Connection](https://python.langchain.com/docs/modules/data_connection/)
   - Connecting SQL databases, processing documents etc.
 - [What are Chains?](https://python.langchain.com/docs/modules/chains/)
@@ -64,8 +94,18 @@ The following are some of the python docs LangChain has on useful topics to get 
 
 Most of these are not very long, just conceptual overviews with a few examples written in python. I found them to be a good starting point to understand how something works and then diving deeper from there.
 
+### Prompting
 
-### LlamaIndex Notes
+This is a major part of using langchain. Refer to [Brex's Prompt Engineering Guide](https://github.com/brexhq/prompt-engineering) for a good overview. 
+
+Things I've Noted about Prompting:
+1. Try simple prompts first
+2. If that doesn't work, expand on your prompt by giving specific instructions
+>Be creative, think of different ways to get the AI to say what you want.
+3. If using an agent, try modifying the tool or the tool prompt. 
+4. If you think your solution is too complex it probably is, try and work backwards to a better solution or look at a different solution.
+
+### LlamaIndex
 
 [Python Docs](https://gpt-index.readthedocs.io/en/latest/index.html)
 
@@ -228,8 +268,6 @@ def mainEventLoop(aiObject: AgentExecutor | SQLDatabaseChain):
 ```
 
 ## Implementations
-
-Things I've tried to connect an SQL database with AI
 
 ### *SQL Chain*
 
@@ -400,7 +438,7 @@ class SQLAIEngineGenerator:
         A wrapper around the setup of a query or chat engine. The class simply creates an index for a query and chat engine to be initiated. Class methods are then used to generate the Chat engine and the Query engine.
 
         Args:
-        url: URL connection string for the SQLAlchemey engine. Refer to SQLAlchemy docs for more information.
+        url: URL connection string for the SQLAlchemy engine. Refer to SQLAlchemy docs for more information.
         tables: Tables to include within the database.
         query_string: An example question to ask the engine to identify the context.
         debug: add logging for debugging
@@ -481,7 +519,7 @@ A somewhat of what [LlamaIndex](#llamaindex-implementation) does but with some i
 
 - Use a more robust vector store DB
 - Changes to Prompting
-- Concurrency (asynchronus function calls)
+- Concurrency (asynchronous function calls)
 
 ### View Schema Prompt Injection
 

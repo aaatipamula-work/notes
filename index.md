@@ -2,6 +2,6 @@
 
 ## About Notes
 
-This is a place for me to deploy notes on topics/anything else I might find interesting.
+This is a place for me to deploy notes on topics or anything else I might find interesting.
 
-Feel free to peruse anything interesting.
+It mostly started as a way to organize my knowledge base at work, and I plan to keep expanding it with any formation related to my work or projects I work on.
