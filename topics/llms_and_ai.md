@@ -113,10 +113,10 @@ Things I've Noted about Prompting:
 
 This is a framework that improves upon LangChain and makes it easier to link data.
 
-From what I've tried its fairly slow, and doesn't seem to offer much in the way of use flexibility. I may come back to this but for now I'm focusing on LangChain.
+From what I've tried its fairly slow, and doesn't seem to offer much in the way of use flexibility. I may come back to this on a later date but for now [Langchain](#langchain) provides me with the flexibility that I like in frameworks.
 
 Pros:
-- It may provide more accurate queries.
+- It may provide more accurate queries out of the box.
 
 Cons: 
 - Less control over implementation. 
@@ -246,10 +246,10 @@ Refer to [access](#access) on how to grab the values of the env variables.
 This is a useful function to interact with an Agent or Chain in the command line:
 
 ```python
-from langchain import SQLDatabaseChain
+from langchain.chains.base import Chain
 from langchain.agents import AgentExecutor
 
-def mainEventLoop(aiObject: AgentExecutor | SQLDatabaseChain):
+def mainEventLoop(aiObject: AgentExecutor | Chain):
     while True:
         try: 
             userInput = input("User: ")
