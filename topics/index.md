@@ -16,15 +16,15 @@ A page or so for almost everything I've encountered in no particular order.
 
 [Python](./languages/python.md) *Coming Soon*
 
-[Regular Expressions (regex)](./languages//regex.md)
+[Regular Expressions (regex)](./languages/regex.md)
 
 [Markdown](./languages/markdown.md)
 
 ## Database
 
-[SQL](./sql.md) 
+[SQL](./database/sql.md) 
 
-[Graph QL](./graphql.md) *Coming Soon*
+[Graph QL](./database/graphql.md) *Coming Soon*
 
 ## Guides
 
