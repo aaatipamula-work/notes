@@ -20,6 +20,8 @@ A page or so for almost everything I've encountered in no particular order.
 
 [Markdown](./languages/markdown.md)
 
+[LaTeX](./languages/latex.md)
+
 ## Database
 
 [SQL](./database/sql.md) 
