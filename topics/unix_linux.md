@@ -16,7 +16,7 @@ Eventually other projects with modifications to the UNIX OS started to appear.
 
 The problem with UNIX and UNIX-like OSes is they were all paid for and proprietary software. While some projects such as *BSD* were already pushing to make their software completely open source, Linux came in as one of the first completely open source and free to use software that ported over many of the Unix utilities and structure.
 
-This was accomplished mostly by the [GNU](https://en.wikipedia.org/wiki/GNU) project as they collected and wrote the core programs that most operating systems used. They then release that collection of programs under a [GNU GPL](https://en.wikipedia.org/wiki/GNU_General_Public_License) or GNU General Public License which allowed for sharing, modification and commercial use of the software. At the time the project was only missing an operating system kernel to tie everything together. This is where [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) comes in. Linus was a Swedish software developer who first wrote the kernel for a personal computer. He later published it for people to share, but not under the GNU license. Eventually after attending a speech by [Richard Stallman]() the founder of the GNU organization he changed his kernel's license to the GNU GPL. From there it was only a matter of time as the kernel became widely adopted. 
+This was accomplished mostly by the [GNU](https://en.wikipedia.org/wiki/GNU) project as they collected and wrote the core programs that most operating systems used. They then release that collection of programs under a [GNU General Public License](https://en.wikipedia.org/wiki/GNU_General_Public_License) or GPL which allowed for sharing, modification and commercial use of the software. At the time the project was only missing an operating system kernel to tie everything together. This is where [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) comes in. Linus was a Swedish software developer who first wrote the kernel for a personal computer. He later published it for people to share, but not under the GNU license. Eventually after attending a speech by [Richard Stallman](https://en.wikipedia.org/wiki/Richard_Stallman) the founder of the GNU organization he changed his kernel's license to the GPL. From there it was only a matter of time as the kernel became widely adopted. 
 
 The heavy involvement of GNU in the creation of what became widely known as Linux is why you'll sometimes see people correct you and say it should be called "GNU-Linux"
 
@@ -32,7 +32,7 @@ It's a very cool project, only 12,000 lines of C code for a fully functional OS 
 
 With the prevalence of UNIX-like operating systems the [IEEE](https://en.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers) decided to standardize how OSes and applications interact to make porting applications and OSes much easier. POSIX (Portable Operating System Interface) is also a trademark owned by the IEEE so operating systems can be POSIX certified. While many OSes follow the POSIX standard the only commercially used OS that is POSIX certified is MacOS (ironically).
 
-## Shells
+## Shells & Commands
 
 Common Shells:
 - [Bash](#bash)
@@ -53,13 +53,76 @@ The following is functionality that most modern shells have.
 - Settings
 - Autocomplete/Suggestion
 - I/O redirection
-- Scripting
+- [Scripting](./languages/shellscript.md)
+
+### Commands 
+
+The following are commands I find useful or just use on a daily basis. They are grouped by similarity.
+
+#### I/O
+
+| Command | Description | Notes |
+| --- | --- | --- | 
+| `cat` | List the contents of a text encoded file | |
+| `head` | List the first 10 lines of a text encoded file | You can specify how many lines to print 10 is the default |
+| `tail` | List the last 10 lines of a text encoded file | You can specify how many lines to print 10 is the default |
+| `less` | List the contents of a file in a navigable format | Use *j* and *k* to move up and down |
+| `|` | Pipe the output of the command on the left to the command on the right | e.g. `history | grep python` | 
+| `>` | Write the output of a command to a file | e.g. `ps -ef > processes.txt` | 
+| `>>` | Append the output of a command to a file | e.g. `ps -ef >> processes.txt` | 
+| `grep` | Search for a word or pattern in files or text | Uses basic regex and some extended regex |
+
+#### Processes
+
+| Command | Description | Notes |
+| --- | --- | --- | 
+| `ps` | List running processes | I use it commonly with `-ef` to list more information and processes from all users |
+| `top` | List all running processes and system info in an interactive way | |
+| `htop` | List all running processes and system info in a more interactive way | More color output and has some other system info |
+| `kill` | Kill a process from a process id | |
+| `nohup` | No hangup, unless the process is specifically sent a hangup signal do not end the process | Useful if you want to start a command and exit the session |
+| `&` | Run a command in the background | |
+| `CTRL-Z` | Stop a command | | 
+| `jobs` | List active or stopped commands | |
+| `bg` | Continue running a job in the background | |
+| `fg` | Continue running a job in the foreground | |
+
+#### Filesystem
+
+| Command | Description | Notes |
+| --- | --- | --- | 
+| `pwd` | Print the current directory you are in | |
+| `cd` | Change directories | `.` and `..` are special directories that point to the current directory and the directory one jump up respectively. You can move one directory up by using `cd ..` |
+| `ls` | List the files and directories of a directory, defaults to current directory `.` | Adding the `-lh` flags gives more useful information on files in a human readable format. The `-a` flag lists hidden directories and files. |
+| `cp a b` | Copy file `a` into file `b` | Add the `-r` flag to copy directories and their contents |
+| `rmdir` | Remove an *empty* directory | |
+| `rm` | Remove a file | Add the `-rf` flags to remove non empty directories **WARNING**: Do NOT run `rm -rf /` it will crash your system almost irreparably. |
+| `mv a b` | Move a file `a` to file `b` | This also works on directories |
+| `touch a` | Create a file `a` | |
+| `mkdir a` | Create a directory `a` | |
+| `chown user ./file.txt` | Change the owner of `file.txt` to `user` | Add the `-R` flag to have it apply recursively to a directory |
+| `chgrp group ./file.txt` | Change the group owner of `file.txt` to `user` | Add the `-R`flag to have it apply recursively to a directory |
+| `chmod 777 ./file.txt` | Change read, write and execute permissions of `file.txt` | Check [Chmod Octal Chart](#chmod-octal-chart) for how to specify file permissions |
+
+#### User
+| Command | Description | Notes |
+| --- | --- | --- | 
+| `useradd` | Add a user | Use the `-D` flag for default options. |
+| `passwd` | Give a user a password | |
+| `su` | Switch users | Use `sudo su` to switch to the super user for multiple commands |
+
+#### Extras
+
+| Command | Description | Notes |
+| --- | --- | --- | 
+| `sudo` | Run a command as the super user or 'admin' | Add the `-e` flag to edit a file as sudo. You must have sudo (admin) permissions to use this command. |
+| `man` | Get a detailed help page on a command and its options. | |
+| `whatis` | Get a short description of a command | |
+| `clear` | Clear the screen of previous commands and output | |
 
 ### Bash
 
-#### Scripting
-
-*Coming Soon*
+Bash, or the Bourne-Again Shell is the most prevalent shell in today's world. It is partly due to the fact that UNIX-like and Linux operating systems are often shipped with it. 
 
 #### Configuration
 
@@ -72,4 +135,158 @@ Bash has a fair bit of configuration you can do. This is done by either creating
 
 **Note**: If bash is invoked with the *login* option it will look for and execute the first three files previously listed. If the *login* option is not set, bash will look for the `.bashrc` file. So by convention most configuration is done in the `.bashrc` file and that file is then called from `.bash_profile`.
 
-*More Coming Soon*
+##### Aliases
+
+Aliases can be defined in one of the configuration files and are defined as following:
+
+```bash
+alias ls="ls -lh"
+```
+
+This is useful for setting common options on frequently used apps or making long commands shorter.
+
+##### Environment Variables
+
+These can be set to use globally in bash:
+
+```bash
+export filepath="/path/to/file"
+```
+
+I use this for setting common filepaths but it can also be used to clean up your home directory.
+
+**Note**: For both [Aliases](#aliases) and [Environment Variables](#environment-variables) adding spaces between the `=` character can lead to parsing errors.
+
+#### History
+
+A few bash history commands I find useful.
+
+| Command | Description | Notes |
+| --- | --- | --- | 
+| `up` | The up arrow cycles through your most recently run command from newest to oldest. | | 
+| `history` | Lists all the commands saved in history prepended with a number to reference the command. | |
+| `!!` | Run the most recent command. | Useful when you forget to prepend a sudo e.g. `sudo !!` |
+| `!*` | Get all the options from the most recent command | If the previous command was `cat ./file.txt` and you want to open it try `vim !*` |
+| `!*n` | Get the nth option from the most recent command | If the previous command was `ls -la /home` and you want to change directories try `cd !2` | 
+| `!n` | Run the nth command in your history | |
+
+### SSH
+
+[SSH](https://en.wikipedia.org/wiki/Secure_Shell) is a program that allows us to easily access Linux machines form the command line remotely. Almost anything that can be done on the machine locally can be done from SSH.
+
+#### SSH-Client
+
+An SSH connection can be invoked something similar to the following:
+
+```bash
+ssh user@host
+```
+
+`user` being the username of the user you would like to connect to on the remote server and `host` being the IP address or domain name of the remote server.
+
+If the SSH server is running on a different port *e.g. port 8100* the `-p` flag can be appended as following:
+
+```bash
+ssh user@host -p 8100
+```
+
+If you are using an key that is not named `id_rsa.pub` you can specify the public key with the `-i` flag:
+
+```bash
+ssh user@host -i /path/to/pubkey
+```
+
+##### SSH Config
+
+SSH has a configuration file that can be found at `~/.ssh/config`. The formatting of a config file would be similar to the following:
+
+```ssh
+Host hostname1
+  HostName www.example.com
+  User user
+  Port 8100
+  IdentityFile /path/to/pubkey
+```
+
+With that file set the command `ssh hostname1` will iniatate a connection with all the parameter set for `hostname1`. 
+
+This file can be expanded to as many hosts as you would like and can even be configured with basic regex to match certain parameters.
+
+Read more about ssh config [here](https://www.ssh.com/academy/ssh/config)
+
+##### SSH Keys
+
+SSH Has a more secure method of authentication than user and password. This is called SSH keys. One can be generated by using the following command and following the instructions:
+
+```bash
+ssh-keygen
+```
+
+I usually add the flags `-t rsa -b 4090` to specify the rsa encryption algorithm and generate a longer key.
+
+#### SSH-Server
+
+The SSH server configuration can be found at `/etc/ssh/sshd_config`. 
+
+I usually set the following parameters:
+
+```
+PermitRootLogin no
+PasswordAuthentication no
+Port 10023
+```
+
+Read more about the `ssh_config` file [here](https://www.ssh.com/academy/ssh/sshd_config)
+
+### Crontab
+
+Crontab is a program that is useful to run commands on a schedule. It uses a simple config file that can be accessed by running:
+
+```
+crontab -e
+```
+
+When the config file is open, you can add a scheduled job by using the following syntax:
+
+```
+MIN HR DOM MONTH DOW /path/to/command/or/script
+```
+
+| Field | Description | Valid Values |
+| --- | --- | --- |
+| MIN | Minute of the Day | 0-59 |
+| HR | Hour of the Day | 0-23 |
+| DOM | Day of the Month | 1-31 |
+| Month | Month of the Year | 1-12 |
+| DOW | Day of the Week | 0-6 |
+
+It can get a little complex but I suggest looking at [Crontab Guru](https://crontab.guru/) to get some practice and check your scheduling syntax.
+
+**Note**: It is suggested to use the full path of scripts and files you would like to run.
+
+**Note**: Don't run sudo commands!
+
+### Chmod Octal Chart
+
+| Octal | Binary | File Mode | 
+| --- | --- | --- |
+| 0 | 000 | \-\-\- |
+| 1 | 001 | --x |
+| 2 | 010 | -w- |
+| 3 | 011 | -wx |
+| 4 | 100 | r-- |
+| 5 | 101 | r-x |
+| 6 | 110 | rw- |
+| 7 | 111 | rwx |
+
+If you run `ls -l` you will see each file prepended with something similar to the following:
+
+```
+-rw-r--r-- 
+```
+
+These are the read, write and execute permissions for the file to the owner of the file, group owner of the file, and everyone else. This can be modified using the `chmod` command. 
+
+After flags are given to the command the second to last argument of the chmod command is an *octal number representation of the permissions* you would like to give the file. *Each of the 3 numbers corresponds to the file owner permissions, group owner permissions, and any user permissions respectively.* This is also reflected in the ls command with each grouping of three characters minus the very first character which indicates if the file is a directory or not. Refer to the **octal chart** above to find the correct octal number representation of file permissions for the user, group and everyone else.
+
+## Linux Distributions
