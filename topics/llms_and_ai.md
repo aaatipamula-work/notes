@@ -74,23 +74,23 @@ A fairly popular python/js framework to use for LLM AI prompting and management.
 The following are some of the python docs LangChain has on useful topics to get familiar with some how the framework and how LLM generative AI works in general:
 
 - [Environment Setup](https://python.langchain.com/docs/get_started/quickstart#environment-setup)
-  - Setting up your python program.
-  - Also refer to my [notes](#environment-setup)
+    - Setting up your python program.
+    - Also refer to my [notes](#environment-setup)
 - [Prompts](https://python.langchain.com/docs/modules/model_io/prompts/)
-  - Good to understand how this works first.
+    - Good to understand how this works first.
 - [LLM v.s. Chat Models](https://python.langchain.com/docs/modules/model_io/models/)
 - [Chat Models](https://python.langchain.com/docs/modules/model_io/models/chat/)
-  - These work slightly differently when compared to regular text based models.
-  - Also look at [caching](https://python.langchain.com/docs/modules/model_io/models/chat/how_to/chat_model_caching) to reduce API calls.
-  - Chat model for [function calling agents](https://python.langchain.com/docs/modules/agents/agent_types/openai_functions_agent) which are tuned for function calls (also refer to [OpenAI](#openai-notes))
+    - These work slightly differently when compared to regular text based models.
+    - Also look at [caching](https://python.langchain.com/docs/modules/model_io/models/chat/how_to/chat_model_caching) to reduce API calls.
+    - Chat model for [function calling agents](https://python.langchain.com/docs/modules/agents/agent_types/openai_functions_agent) which are tuned for function calls (also refer to [OpenAI](#openai-notes))
 - [Overview of Data Connection](https://python.langchain.com/docs/modules/data_connection/)
-  - Connecting SQL databases, processing documents etc.
+    - Connecting SQL databases, processing documents etc.
 - [What are Chains?](https://python.langchain.com/docs/modules/chains/)
 - [What are Agents?](https://python.langchain.com/docs/modules/agents/)
 - [Adding Memory](https://python.langchain.com/docs/modules/memory/)
-  - For both Agents and Chains.
+    - For both Agents and Chains.
 - [Callbacks](https://python.langchain.com/docs/modules/callbacks/)
-  - Hooking into the function calls being made, useful for logging and looking at an agent or chains's "thought process" 
+    - Hooking into the function calls being made, useful for logging and looking at an agent or chains's "thought process" 
 
 Most of these are not very long, just conceptual overviews with a few examples written in python. I found them to be a good starting point to understand how something works and then diving deeper from there.
 
