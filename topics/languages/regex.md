@@ -2,14 +2,14 @@
 
 ## Overview
 
-[Regular expressions](https://en.wikipedia.org/wiki/Regular_expression) or more commonly known as regex or regexp is a sequence of characters that that when put together in the proper order creates a match, usually with another string of characters. Regex engines are what do the actual work of matching the text, the sequence of input characters is what directs the engine. It is mostly used in find/replace operations, to parse text and extract values or to validate text.
+[Regular expressions](https://en.wikipedia.org/wiki/Regular_expression) or more commonly known as regex or regexp is a sequence of characters that when put together in the proper order specifies a matching pattern, usually with another string of characters. Regex engines are what do the actual work of matching the text, the sequence of input characters is what directs the engine. It is mostly used in find/replace operations, to parse text and extract values or to validate text.
 
 Good uses of regex may include one of the following:
-- Find and replace the string "cat" with "dog" only if the string "wet" precedes the word "cat"
-- Only extracting URLs from a large document where the domain name is "google.com"
+- Find and replace the string "cat" with "dog" only if the string "wet" precedes the word "cat".
+- Only extracting URLs from a large document where the domain name is "google.com".
 - Making sure the words in a string are all capitalized.
 
-## Ideas
+## Concepts
 
 ### Token
 
@@ -25,9 +25,11 @@ Most regex engines have the ability to capture certain parts of a match to extra
 
 ## Syntax
 
-The syntax is fairly simple but can be strung together in complex ways. There are varying implementations of regex as well which means you would likely have to look up the syntax for the specific engine that you are using.
+The syntax is fairly simple but can be strung together in complex ways. 
 
-That being said here are a few common tokens.
+**Note**: There are varying implementations of regex as well which means you would likely have to look up the syntax for the specific engine that you are using.
+
+Common Tokens:
 
 | Token | Meaning |
 | --- | --- |
@@ -54,8 +56,6 @@ That being said here are a few common tokens.
 | a{1,6} | Between one and six of 'a' |
 | ^ | The start of a string |
 | $ | The end of a string |
-
-*This table was mostly copied from [Regex101](https://regex101.com/)*
 
 **Note**: The tokens `*` and `+` can be modified with the `?` token to be *non-greedy* or *lazy*. 
 

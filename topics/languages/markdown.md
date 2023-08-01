@@ -26,7 +26,7 @@ Common Syntax:
 **Note**: Most engines support replacing URLs with local files on links an images. For *Links* some even support putting header names in the URL section.
 > e.g. \[image\](./local/image.png)
 
-> e.g. \[link\](#heading1)
+> e.g. \[link\](#heading-name)
 
 GFM (Github Flavored Markdown) Extended Syntax:
 

@@ -1,65 +1,44 @@
 # UNIX and Linux
 
-*Add sections on bash and commands*
+*Add info on Linux Distros and systemctl, ufw apt-get/apt for ubuntu, selinux firewalld and dnf for fedora.*
 
 ## Overview
 
-[UNIX](https://en.wikipedia.org/wiki/Unix) is the godfather of about 90% of all OSes, developed a group of people at AT&T's Bell Labs, that group of computer scientists developed the filesystem structure and many of the basic programs we use in most OSes today. Although first written in assembly for specific computers, it was eventually written in C and made portable, which was a major step towards it gaining popularity. 
+[UNIX](https://en.wikipedia.org/wiki/Unix) is the godfather of about 90% of all modern OSes. Developed a group of computer science researchers at AT&T's Bell Labs, they developed the basic filesystem structure and many of the basic programs we use in most OSes today. Although first written in assembly for specific computers, it was eventually written in [C](https://en.wikipedia.org/wiki/C_(programming_language)) and made portable, which was a major step towards it gaining popularity. 
 
 ### Derivatives of UNIX
 
 Eventually other projects with modifications to the UNIX OS started to appear. 
 
-[BSD](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution) or Berkley software  was originally just a superset of Unix and implemented the first TCP/IP protocol. It eventually became the father of two other OSes that are fairly popular in the modern age, [MacOS](https://en.wikipedia.org/wiki/MacOS) and [FreeBSD](https://en.wikipedia.org/wiki/FreeBSD). There were some other popular OSes that came from Unix/BSD which eventually died out such as [SunOS](https://en.wikipedia.org/wiki/SunOS) and [Solaris](https://en.wikipedia.org/wiki/Oracle_Solaris). 
+[BSD](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution) or Berkley Software Distribution was originally just a superset of Unix and implemented the first TCP/IP protocol. It eventually became the father of two other OSes that are fairly popular in the modern age, [MacOS](https://en.wikipedia.org/wiki/MacOS) and [FreeBSD](https://en.wikipedia.org/wiki/FreeBSD). There were some other popular OSes that came from Unix/BSD which eventually lost popularity such as [SunOS](https://en.wikipedia.org/wiki/SunOS) and [Solaris](https://en.wikipedia.org/wiki/Oracle_Solaris). 
 
 ### The Rise of Linux
 
-The problem with UNIX and UNIX-like OSes is they were all paid for and proprietary software. While some projects such as *BSD* were already pushing to make their software completely open source, Linux came in as one of the first completely open source and free to use software that ported over many of the Unix utilities and structure.
+The problem with UNIX and most other UNIX-like OSes is they were all paid for and proprietary software. While some projects such as *BSD* were already pushing to make their software completely open source, Linux came in as one of the first completely open source and free to use software that ported over many of the Unix utilities and structure.
 
-This was accomplished mostly by the [GNU](https://en.wikipedia.org/wiki/GNU) project as they collected and wrote the core programs that most operating systems used. They then release that collection of programs under a [GNU General Public License](https://en.wikipedia.org/wiki/GNU_General_Public_License) or GPL which allowed for sharing, modification and commercial use of the software. At the time the project was only missing an operating system kernel to tie everything together. This is where [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) comes in. Linus was a Swedish software developer who first wrote the kernel for a personal computer. He later published it for people to share, but not under the GNU license. Eventually after attending a speech by [Richard Stallman](https://en.wikipedia.org/wiki/Richard_Stallman) the founder of the GNU organization he changed his kernel's license to the GPL. From there it was only a matter of time as the kernel became widely adopted. 
+This was accomplished mostly by the [GNU](https://en.wikipedia.org/wiki/GNU) project as they collected and wrote the core programs that most operating systems at the time used. They then released that collection of programs under a [GNU General Public License](https://en.wikipedia.org/wiki/GNU_General_Public_License) or GPL which allowed for sharing, modification and commercial use of the software. At the time the project was only missing an operating system kernel to tie everything together. This is where [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) comes in. Linus was a Swedish software developer who first wrote what came to be known as the Linux kernel for a personal computer. He later published it for people to share, but not under the GNU license. Eventually after attending a speech by [Richard Stallman](https://en.wikipedia.org/wiki/Richard_Stallman), the founder of the GNU organization, he changed his kernel's license to the GNU GPL. From there it was only a matter of time that the kernel became widely adopted. 
 
-The heavy involvement of GNU in the creation of what became widely known as Linux is why you'll sometimes see people correct you and say it should be called "GNU-Linux"
+The heavy involvement of GNU in the creation of what became widely known as Linux is why you'll sometimes see people correct you and say it should be called "GNU-Linux".
 
-> Fun note, the name Linux only came about as his friend who hosted the FTP server that held the kernel named Linus' directory "linux".
+> Fun note, the name Linux only came about as Linus' friend who hosted the FTP server that held the kernel named his directory "linux".
 
 ### Minix
 
-A different OS named [Minix](https://en.wikipedia.org/wiki/Minix) actually came out before Linux that was free and open source. It was created by professor [Andrew S. Tanenbaum](https://en.wikipedia.org/wiki/Andrew_S._Tanenbaum) who wrote the program as a way for students to learn Unix. It came packaged with a textbook but was also distributed for free to universities. While this OS predated the GNU project it never gained popularity as it was not designed for commercial use as the GNU project intended.
+A different OS named [Minix](https://en.wikipedia.org/wiki/Minix) actually came out before Linux that was free and open source. It was created by professor [Andrew S. Tanenbaum](https://en.wikipedia.org/wiki/Andrew_S._Tanenbaum) who wrote the program as a way for students to learn Unix. It came packaged with a textbook but was also distributed for free to universities. While this OS predated the Linux kernel it never gained popularity as it was not designed for commercial use, while the GNU project had commercial use in mind.
 
 It's a very cool project, only 12,000 lines of C code for a fully functional OS and uses a different kernel architecture as compared to Linux ([microkernel](https://en.wikipedia.org/wiki/Microkernel) v.s. [monolithic kernel](https://en.wikipedia.org/wiki/Monolithic_kernel)). It still has some use today and Intel has even been found to use it in their CPUs.
 
 ### POSIX
 
-With the prevalence of UNIX-like operating systems the [IEEE](https://en.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers) decided to standardize how OSes and applications interact to make porting applications and OSes much easier. POSIX (Portable Operating System Interface) is also a trademark owned by the IEEE so operating systems can be POSIX certified. While many OSes follow the POSIX standard the only commercially used OS that is POSIX certified is MacOS (ironically).
+With the prevalence of UNIX-like operating systems the [IEEE](https://en.wikipedia.org/wiki/Institute_of_Electrical_and_Electronics_Engineers) decided to standardize how OSes and applications interact to make porting applications and OSes much easier. POSIX (Portable Operating System Interface) is also a trademark owned by the IEEE so operating systems can be POSIX certified. While many OSes follow the POSIX standard, the only commercially used OS that is POSIX certified is MacOS (ironically).
 
-## Shells & Commands
+## Commands 
 
-Common Shells:
-- [Bash](#bash)
-- Zsh
-- Fish
-- PowerShell
+The following are commands that should appear in any UNIX-like OS. Most of them are basic commands but there are some useful ones I've also listed out. 
 
-Less Common:
-- Sh
-- Ksh
-- Csh
+The simpler and common commands are grouped by similarity. The more complex commands have their own sections.
 
-### Common Functionality
-
-The following is functionality that most modern shells have.
-
-- History
-- Settings
-- Autocomplete/Suggestion
-- I/O redirection
-- [Scripting](./languages/shellscript.md)
-
-### Commands 
-
-The following are commands I find useful or just use on a daily basis. They are grouped by similarity.
-
-#### I/O
+### I/O
 
 | Command | Description | Notes |
 | --- | --- | --- | 
@@ -72,7 +51,7 @@ The following are commands I find useful or just use on a daily basis. They are 
 | `>>` | Append the output of a command to a file | e.g. `ps -ef >> processes.txt` | 
 | `grep` | Search for a word or pattern in files or text | Uses basic regex and some extended regex |
 
-#### Processes
+### Processes
 
 | Command | Description | Notes |
 | --- | --- | --- | 
@@ -80,20 +59,20 @@ The following are commands I find useful or just use on a daily basis. They are 
 | `top` | List all running processes and system info in an interactive way | |
 | `htop` | List all running processes and system info in a more interactive way | More color output and has some other system info |
 | `kill` | Kill a process from a process id | |
-| `nohup` | No hangup, unless the process is specifically sent a hangup signal do not end the process | Useful if you want to start a command and exit the session |
-| `&` | Run a command in the background | |
+| `nohup` | No hangup; Unless the process is specifically sent a kill signal do not end the process | Useful if you want to start a command in a terminal session and exit the session, e.g. `nohup sleep 100` |
+| `&` | Run a command in the background | Append this to the end of your command, e.g. `sleep 100 &` |
 | `CTRL-Z` | Stop a command | | 
 | `jobs` | List active or stopped commands | |
-| `bg` | Continue running a job in the background | |
-| `fg` | Continue running a job in the foreground | |
+| `bg` | Continue running a job in the background | Append `%` to the job number, e.g `fg %1` to run job 1 in the foreground |
+| `fg` | Continue running a job in the foreground | Append `%` to the job number, e.g `bg %1` to run job 1 in the background |
 
-#### Filesystem
+### Filesystem
 
 | Command | Description | Notes |
 | --- | --- | --- | 
 | `pwd` | Print the current directory you are in | |
 | `cd` | Change directories | `.` and `..` are special directories that point to the current directory and the directory one jump up respectively. You can move one directory up by using `cd ..` |
-| `ls` | List the files and directories of a directory, defaults to current directory `.` | Adding the `-lh` flags gives more useful information on files in a human readable format. The `-a` flag lists hidden directories and files. |
+| `ls` | List the files and directories of a directory; defaults to current directory `.` | Adding the `-lh` flags gives more useful information on files in a human readable format. The `-a` flag lists hidden directories and files. |
 | `cp a b` | Copy file `a` into file `b` | Add the `-r` flag to copy directories and their contents |
 | `rmdir` | Remove an *empty* directory | |
 | `rm` | Remove a file | Add the `-rf` flags to remove non empty directories **WARNING**: Do NOT run `rm -rf /` it will crash your system almost irreparably. |
@@ -101,17 +80,18 @@ The following are commands I find useful or just use on a daily basis. They are 
 | `touch a` | Create a file `a` | |
 | `mkdir a` | Create a directory `a` | |
 | `chown user ./file.txt` | Change the owner of `file.txt` to `user` | Add the `-R` flag to have it apply recursively to a directory |
-| `chgrp group ./file.txt` | Change the group owner of `file.txt` to `user` | Add the `-R`flag to have it apply recursively to a directory |
+| `chgrp group ./file.txt` | Change the group owner of `file.txt` to `user` | Add the `-R` flag to have it apply recursively to a directory |
 | `chmod 777 ./file.txt` | Change read, write and execute permissions of `file.txt` | Check [Chmod Octal Chart](#chmod-octal-chart) for how to specify file permissions |
 
-#### User
+### User
+
 | Command | Description | Notes |
 | --- | --- | --- | 
 | `useradd` | Add a user | Use the `-D` flag for default options. |
 | `passwd` | Give a user a password | |
-| `su` | Switch users | Use `sudo su` to switch to the super user for multiple commands |
+| `su` | Switch user | Use `sudo su` to switch to the super user for multiple commands |
 
-#### Extras
+### Extras
 
 | Command | Description | Notes |
 | --- | --- | --- | 
@@ -119,56 +99,6 @@ The following are commands I find useful or just use on a daily basis. They are 
 | `man` | Get a detailed help page on a command and its options. | |
 | `whatis` | Get a short description of a command | |
 | `clear` | Clear the screen of previous commands and output | |
-
-### Bash
-
-Bash, or the Bourne-Again Shell is the most prevalent shell in today's world. It is partly due to the fact that UNIX-like and Linux operating systems are often shipped with it. 
-
-#### Configuration
-
-Bash has a fair bit of configuration you can do. This is done by either creating or modifying one of the following files in your `$HOME` directory:
-
-- `.bash_profile`
-- `.bash_login`
-- `.profile`
-- `.bashrc`
-
-**Note**: If bash is invoked with the *login* option it will look for and execute the first three files previously listed. If the *login* option is not set, bash will look for the `.bashrc` file. So by convention most configuration is done in the `.bashrc` file and that file is then called from `.bash_profile`.
-
-##### Aliases
-
-Aliases can be defined in one of the configuration files and are defined as following:
-
-```bash
-alias ls="ls -lh"
-```
-
-This is useful for setting common options on frequently used apps or making long commands shorter.
-
-##### Environment Variables
-
-These can be set to use globally in bash:
-
-```bash
-export filepath="/path/to/file"
-```
-
-I use this for setting common filepaths but it can also be used to clean up your home directory.
-
-**Note**: For both [Aliases](#aliases) and [Environment Variables](#environment-variables) adding spaces between the `=` character can lead to parsing errors.
-
-#### History
-
-A few bash history commands I find useful.
-
-| Command | Description | Notes |
-| --- | --- | --- | 
-| `up` | The up arrow cycles through your most recently run command from newest to oldest. | | 
-| `history` | Lists all the commands saved in history prepended with a number to reference the command. | |
-| `!!` | Run the most recent command. | Useful when you forget to prepend a sudo e.g. `sudo !!` |
-| `!*` | Get all the options from the most recent command | If the previous command was `cat ./file.txt` and you want to open it try `vim !*` |
-| `!*n` | Get the nth option from the most recent command | If the previous command was `ls -la /home` and you want to change directories try `cd !2` | 
-| `!n` | Run the nth command in your history | |
 
 ### SSH
 
@@ -260,6 +190,12 @@ MIN HR DOM MONTH DOW /path/to/command/or/script
 | Month | Month of the Year | 1-12 |
 | DOW | Day of the Week | 0-6 |
 
+e.g. Run a backup script at every 1st minute. (Runs the first minute of every hour of the day 24/7, 356 days a year.):
+
+```
+1 * * * * /home/user/backup.sh
+```
+
 It can get a little complex but I suggest looking at [Crontab Guru](https://crontab.guru/) to get some practice and check your scheduling syntax.
 
 **Note**: It is suggested to use the full path of scripts and files you would like to run.
@@ -288,5 +224,84 @@ If you run `ls -l` you will see each file prepended with something similar to th
 These are the read, write and execute permissions for the file to the owner of the file, group owner of the file, and everyone else. This can be modified using the `chmod` command. 
 
 After flags are given to the command the second to last argument of the chmod command is an *octal number representation of the permissions* you would like to give the file. *Each of the 3 numbers corresponds to the file owner permissions, group owner permissions, and any user permissions respectively.* This is also reflected in the ls command with each grouping of three characters minus the very first character which indicates if the file is a directory or not. Refer to the **octal chart** above to find the correct octal number representation of file permissions for the user, group and everyone else.
+
+## Shells
+
+Common Shells:
+- [Bash](#bash)
+- Zsh
+- Fish
+- PowerShell
+
+Less Common:
+- Sh
+- Ksh
+- Csh
+
+### Common Functionality
+
+The following is functionality that most modern shells have.
+
+- History
+- Settings
+- Autocomplete/Suggestion
+- I/O redirection
+- [Scripting](./languages/shellscript.md)
+
+### Bash
+
+Bash, or the Bourne-Again Shell is the most prevalent shell in today's world. It is partly due to the fact that UNIX-like and Linux operating systems are often shipped with it. 
+
+#### Configuration
+
+Bash has a fair bit of configuration you can do. This is done by either creating or modifying one of the following files in your `$HOME` directory:
+
+- `.bash_profile`
+- `.bash_login`
+- `.profile`
+- `.bashrc`*
+
+\***Note**: If bash is invoked with the *login* option it will look for and execute the first three files previously listed *in that order*. If the *login* option is not set, bash will look for the `.bashrc` file. So by convention most configuration is done in the `.bashrc` file and that file is then called from `.bash_profile`.
+
+##### Aliases
+
+Aliases can be defined in one of the configuration files and are defined as following:
+
+```bash
+alias ls="ls -lh"
+```
+
+This is useful for setting common options on frequently used commands or making long commands shorter.
+
+**Note**: For both [Aliases](#aliases) and [Environment Variables](#environment-variables) adding spaces between the `=` character can lead to parsing errors.
+
+##### Environment Variables
+
+These can be set to use globally in bash:
+
+```bash
+export filepath="/path/to/file"
+```
+
+I use this for setting common filepaths but it can also be used to clean up your home directory.
+
+**Note**: For both [Aliases](#aliases) and [Environment Variables](#environment-variables) adding spaces between the `=` character can lead to parsing errors.
+
+#### History Expansion
+
+A few bash history commands I find useful.
+
+| Command | Description | Notes |
+| --- | --- | --- | 
+| `up` | The up arrow cycles through your most recently run command from newest to oldest. | | 
+| `history` | Lists all the commands saved in history prepended with a number to reference the command. | |
+| `!!` | Run the most recent command. | Useful when you forget to prepend a sudo e.g. `sudo !!` |
+| `!*` | Get all the options from the most recent command | If the previous command was `cat ./file.txt` and you want to open it try `vim !*` |
+| `!foo` | Get the most recent command *starting* with `foo` and run it | |
+| `!?foo` | Get the most recent command that *containing* `foo` and run it | |
+| `!n` | Run the nth command in your history | Negate `n` to reverse search and run the nth most recent command |
+| `!!:n` | Get the nth option from the most recent command | If the previous command was `ls -la /home` and you want to change directories try `cd !!:2`; Replace `n` with `$` for the last argument; Select ranges with a colon between numbers, e.g. `!!:2-$` | 
+
+Refer to [this](https://www.thegeekstuff.com/2011/08/bash-history-expansion/) guide for more detailed info.
 
 ## Linux Distributions
