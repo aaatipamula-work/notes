@@ -49,6 +49,10 @@ WHERE col3 > 10
 
 Any querying conditionals, aggregates etc. can be added to create the needed view.
 
+## Syntax
+
+**Coming Soon**
+
 ## Databases
 
 ### MSSQL (Microsoft SQL Server)
@@ -57,6 +61,6 @@ Any querying conditionals, aggregates etc. can be added to create the needed vie
 
 *MSSQL* uses a superset of SQL called [T-SQL](https://www.simplilearn.com/tutorials/sql-tutorial/transact-sql) or Transact SQL.
 
-Being a superset of SQL it functions similarly at its core and anything you've already learned about SQL should apply. The only statement I've found that does not work is the `LIKE` statement.
+Being a superset of SQL it functions similarly at its core and anything you've already learned about SQL should apply. The only statement I've found that does not work is the `LIMIT` statement.
 
 > I suggest downloading [SSMS](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16) or SQL Server Management Studio to interact with databases.

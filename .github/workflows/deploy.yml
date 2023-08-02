@@ -25,9 +25,6 @@ jobs:
           secondary-color: teal
           hide-repository: false
 
-      - name: Add Pictures
-        run: sudo cp -r ./pictures ./generated
-
       - name: Upload Pages
         uses: actions/upload-pages-artifact@v2
         with:

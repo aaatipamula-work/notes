@@ -36,7 +36,7 @@
 | Arc Secant | `\arcsec` |
 | Arc Secant | `\arcsec` |
 
-> *NOTE: Groupings can be nested, and put after an operation to specify that they belong to that operation 
+> *NOTE: Groupings can be nested and put after an operation to specify that they belong to that operation 
 >
 > e.g. `x^{3ex}` would put the `3ex` in the exponent.
 
