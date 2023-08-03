@@ -41,19 +41,19 @@ Most of the following is links to reading and resources that could be helpful wh
         - [Opt Out of Data Sharing](https://docs.google.com/forms/d/e/1FAIpQLScrnC-_A7JFs4LbIuzevQ_78hVERlNqqCPCt3d8XqnKOfdRdQ/viewform)
         - [Opt In Data Sharing](https://docs.google.com/forms/d/e/1FAIpQLSevgtKyiSWIOj6CV6XWBHl1daPZSOcIWzcUYUXQ1xttjBgDpA/viewform)
 
-### Overview 
+#### Overview 
 
-#### Tokens
+##### Tokens
 
 [Tokens](https://platform.openai.com/docs/introduction/tokens) are essential to how OpenAI's api works. A **Token** is a set of characters that the LLMs uses to help parse and determine output. According to OpenAI they are usually around "4 characters or 0.75 english words". 
 
 *The number of tokens that you send to a model and the number of tokens generated for that response are what determines the cost of an API call. Different models have different token costs and are usually around a fraction of a cent per token*
 
-#### Embeddings
+##### Embeddings
 
 [Embeddings](https://platform.openai.com/docs/introduction/embeddings) are not essential to using the API but are useful to understand how LLMs work. **Embeddings** are a vector encoded representation of text and are mostly used to determine how related texts are. They also have use outside of AI to cluster related texts for use in searches, classification etc.
 
-#### Models
+##### Models
 
 OpenAI Provides a few popular models:
 - [GPT 3.5](https://platform.openai.com/docs/models/gpt-3-5)
@@ -70,6 +70,8 @@ There are a few different variations of these models which usually change one of
 [Github](https://github.com/hwchase17/langchain)
 
 A fairly popular python/js framework to use for LLM AI prompting and management.
+
+#### Resources 
 
 The following are some of the python docs LangChain has on useful topics to get familiar with some how the framework and how LLM generative AI works in general:
 
@@ -94,7 +96,7 @@ The following are some of the python docs LangChain has on useful topics to get 
 
 Most of these are not very long, just conceptual overviews with a few examples written in python. I found them to be a good starting point to understand how something works and then diving deeper from there.
 
-### Prompting
+#### Prompting
 
 This is a major part of using langchain. Refer to [Brex's Prompt Engineering Guide](https://github.com/brexhq/prompt-engineering) for a good overview. 
 
@@ -110,6 +112,8 @@ Things I've Noted about Prompting:
 [Python Docs](https://gpt-index.readthedocs.io/en/latest/index.html)
 
 [Github](https://github.com/jerryjliu/llama_index)
+
+#### Overview
 
 This is a framework that improves upon LangChain and makes it easier to link data.
 
@@ -486,7 +490,6 @@ class SQLAIEngineGenerator:
     def create_query_engine(self) -> BaseQueryEngine:
        return self.index.as_query_engine()
 ```
-
 
 ### Schema Indexing
 
